@@ -1,0 +1,65 @@
+﻿@page
+@model Alexia_Mircea_ProiectFinal.Pages.Clothes.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Clothing</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Clothing.ItemID" class="control-label"></label>
+                <input asp-for="Clothing.ItemID" class="form-control" />
+                <span asp-validation-for="Clothing.ItemID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clothing.Name" class="control-label"></label>
+                <input asp-for="Clothing.Name" class="form-control" />
+                <span asp-validation-for="Clothing.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clothing.Size" class="control-label"></label>
+                <input asp-for="Clothing.Size" class="form-control" />
+                <span asp-validation-for="Clothing.Size" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clothing.Color" class="control-label"></label>
+                <input asp-for="Clothing.Color" class="form-control" />
+                <span asp-validation-for="Clothing.Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clothing.Material" class="control-label"></label>
+                <input asp-for="Clothing.Material" class="form-control" />
+                <span asp-validation-for="Clothing.Material" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clothing.Price" class="control-label"></label>
+                <input asp-for="Clothing.Price" class="form-control" />
+                <span asp-validation-for="Clothing.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clothing.CategoryID" class="control-label">Category Name</label>
+                <select asp-for="Clothing.CategoryID" class="form-control" asp-items="ViewBag.CategoryID">
+                </select>
+                <span asp-validation-for="Clothing.CategoryID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,98 @@
+﻿@page
+@model Alexia_Mircea_ProiectFinal.Pages.Orders.IndexModel
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<h1>Orders</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].ClientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].OrderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Clothing.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Clothing.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Clothing.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].IsShipped)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Order) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderID)
+            </td>
+            @foreach (var item2 in Model.Clothing)
+            {
+                bool FoundCode = false;
+                bool LastClothing = false;
+                if (item2 == Model.Clothing.Last())
+                {
+                    LastClothing = true;
+                }
+                if (item.OrderID == item2.ItemID)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item2.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item2.Size)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item2.Color)
+                    </td>
+                    FoundCode = true;
+                    break;
+                }
+                if (FoundCode == false && LastClothing == true)
+                {
+                    <td>
+                        Invalid Product Code
+                    </td>
+                    <td>
+                        Invalid Product Code
+                    </td>
+                    <td>
+                        Invalid Product Code
+                    </td>
+                }
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsShipped)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
